@@ -1,0 +1,17 @@
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Data.deps.json
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Data.runtimeconfig.json
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Data.dll
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Data.pdb
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Model.dll
+D:\C# projects\LMS\Data\bin\Debug\net6.0\Model.pdb
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.csproj.AssemblyReference.cache
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.AssemblyInfoInputs.cache
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.AssemblyInfo.cs
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.csproj.CoreCompileInputs.cache
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.csproj.CopyComplete
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.dll
+D:\C# projects\LMS\Data\obj\Debug\net6.0\refint\Data.dll
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.pdb
+D:\C# projects\LMS\Data\obj\Debug\net6.0\Data.genruntimeconfig.cache
+D:\C# projects\LMS\Data\obj\Debug\net6.0\ref\Data.dll

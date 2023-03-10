@@ -32,6 +32,10 @@ namespace YourNamespace.Controllers
         {
             var category = await _categoryService.GetCategoryByID(id);
 
+            if (id != null)
+            {
+                category.CategoryId = id;
+            }
             if (category == null)
             {
                 return NotFound();

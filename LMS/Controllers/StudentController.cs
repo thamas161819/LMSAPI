@@ -1,6 +1,4 @@
 ﻿using Data.Repositary;
-using Data.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 
@@ -26,9 +24,17 @@ namespace LMS.Controllers
             return Ok(student);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetStudentByID(int id)
+        {
+          var student = await _StudentService.GetStudentByID(id);
+            return Ok(student);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddStudent([FromBody] Student student)
         {
+
             var result = await _StudentService.AddStudent(student);
             return Ok(result);
         }
@@ -37,6 +43,10 @@ namespace LMS.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] Student student)
         {
+            if (id != null)
+            {
+                student.StudentID = id;
+            }
             if (id != student.StudentID)
             {
                 return BadRequest("The category ID in the URL doesn't match the one in the request body.");

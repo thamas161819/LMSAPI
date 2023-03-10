@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSingleton<CategoryContext>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IInstructorService, InstructorService>();    
+builder.Services.AddScoped<IRegisterService, RegisterService>();    
 
 
 builder.Services.AddControllers();

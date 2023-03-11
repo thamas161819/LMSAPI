@@ -24,8 +24,8 @@ namespace Data.Services
             _dbConnection = new SqlConnection(connectionString);
         }
 
-
-        
+     
+   
         public async Task<Account> AddAccount(Account Rs)
         {
             var parameter = new DynamicParameters();
@@ -34,11 +34,15 @@ namespace Data.Services
             parameter.Add("@AccountType", Rs.AccountType);
             parameter.Add("@DisplayName", Rs.DisplayName);
             parameter.Add("@VerificationToken", Rs.VerificationToken);
-            parameter.Add("@isVerified", Rs.isVerified);
+            parameter.Add("@isVerified", Rs.IsVerified);
             parameter.Add("@VerifiedOn", Rs.VerifiedOn);
 
-            var results = await _dbConnection.QueryAsync<Account>("AddAccount" ,parameter, commandType: CommandType.StoredProcedure);
+            var results = await _dbConnection.QueryAsync<Account>("AddAccount", parameter, commandType: CommandType.StoredProcedure);
             return results.SingleOrDefault();
         }
+
+        
+
+
     }
 }

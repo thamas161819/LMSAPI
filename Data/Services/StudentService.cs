@@ -61,6 +61,7 @@ namespace Data.Services
 
         public async Task<Student> UpdateStudent(Student student)
         {
+            
             var parameters = new DynamicParameters();
             parameters.Add("StudentID", student.StudentID);
             parameters.Add("@FirstName", student.FirstName);

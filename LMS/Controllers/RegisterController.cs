@@ -6,23 +6,43 @@ using Model;
 
 namespace LMS.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class RegisterController : ControllerBase
     {
-        private readonly IRegisterService _RegisterService;
+        private readonly IRegisterService _RgService;
 
-        public RegisterController(IRegisterService registerService)
+        public RegisterController(IRegisterService RgService)
         {
-            _RegisterService = registerService;
+            _RgService = RgService;
         }
+
+
+
+        //[HttpGet]
+        //public async Task<IActionResult> Get()
+        //{
+        //    var categories = await _RgService.GetCategories();
+        //    return Ok(categories);
+        //}
+
+
+
 
 
         [HttpPost]
-        public async Task<IActionResult> AddAccount([FromBody] Account account)
+        public async Task<IActionResult> AddAccount([FromBody] Account account) 
         {
-            var result = await _RegisterService.AddAccount(account);
+
+            var result = await _RgService.AddAccount(account);
             return Ok(result);
         }
+
+
+
+      
+
+
+     
     }
 }

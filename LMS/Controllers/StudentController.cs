@@ -1,6 +1,8 @@
 ﻿using Data.Repositary;
+using LMS.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Model;
+
 
 namespace LMS.Controllers
 {
@@ -35,8 +37,19 @@ namespace LMS.Controllers
         public async Task<IActionResult> AddStudent([FromBody] Student student)
         {
 
+
             var result = await _StudentService.AddStudent(student);
+            string senderEmail = "thamas9824@gmail.com";
+            string subject = "New Student Added";
+            string message = $"A new student has been added with the name.";
+            bool isEmailSent = SendEmail.EmailSend(senderEmail, subject, message, null);
+
+
+
+
             return Ok(result);
+
+
         }
 
 

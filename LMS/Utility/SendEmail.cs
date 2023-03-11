@@ -6,7 +6,7 @@ namespace LMS.Utility
 {
     public class SendEmail
     {
-        public static bool EmailSend(string SenderEmail, string Subject, string Message, string AttchServerPath, bool IsBodyHtml = false)
+        public static bool EmailSend(string SenderEmail, string Subject, string Message, string AttchServerPath, bool IsBodyHtml = true)
         {
             //Logger logger = LogManager.GetLogger("databaseLogger");
             bool status = false;

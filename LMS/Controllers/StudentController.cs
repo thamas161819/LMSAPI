@@ -41,7 +41,13 @@ namespace LMS.Controllers
             var result = await _StudentService.AddStudent(student);
             string senderEmail = "thamas9824@gmail.com";
             string subject = "New Student Added";
-            string message = $"A new student has been added with the name.";
+            //var html = System.IO.File.ReadAllText(@"./assets/verified.html");
+            //return base.Content(html, "text/html");
+            string message = System.IO.File.ReadAllText(@"D:\C# projects\LMSAPI\LMS\EmailTemplate\AccountConfirmation.html");
+
+            message = message.Replace("[[StudentName]]", student.EmailID);
+
+
             bool isEmailSent = SendEmail.EmailSend(senderEmail, subject, message, null);
 
 

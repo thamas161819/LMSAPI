@@ -7,13 +7,17 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//builder.Services.AddSingleton<CategoryContext>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddScoped<IValidateResetToken, ValidateResetTokenService>();
+builder.Services.AddScoped<IResetPassword,ResetPasswordService>();
+
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IInstructorService, InstructorService>();    
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();

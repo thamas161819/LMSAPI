@@ -40,9 +40,6 @@ namespace Data.Services
             var results = await _dbConnection.QueryAsync<Account>("AddAccount", parameter, commandType: CommandType.StoredProcedure);
             return results.SingleOrDefault();
         }
-
-        
-
-
+                
     }
 }

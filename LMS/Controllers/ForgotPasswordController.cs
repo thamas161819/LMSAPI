@@ -1,12 +1,16 @@
 ﻿using Data.Repositary;
 using Data.Services;
 using LMS.Utility;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 using Model;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace LMS.Controllers
 {
@@ -18,10 +22,13 @@ namespace LMS.Controllers
 
         private readonly IForgotPasswordService _forgotPasswordService;
 
-        public ForgotPasswordController(IForgotPasswordService forgotPasswordService, IConfiguration configuration)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public ForgotPasswordController(IForgotPasswordService forgotPasswordService, IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             _forgotPasswordService = forgotPasswordService;
             _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
 
@@ -35,12 +42,20 @@ namespace LMS.Controllers
 
                 if (emailExists!=null)
                 {
-                    var senderEmail = "thamas9824@gmail.com";
+                    var senderEmail = email.Email;
                     var subject = "Password Reset Request";
-                    
-                    var message = System.IO.File.ReadAllText(@"D:\C# projects\LMSAPI\LMS\EmailTemplate\PasswordReset.html");
+
+                    var path = Path.Combine(_hostingEnvironment.ContentRootPath, "EmailTemplate", "PasswordReset.html");
+
+
+                    //var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmailTemplate", "PasswordReset.html");
+                    var message = await System.IO.File.ReadAllTextAsync(path);
+
+
+                  //  var message = System.IO.File.ReadAllText(@"~/EmailTemplate/PasswordReset.html");
                     var resetPasswordLink = _configuration.GetValue<string>("ResetPasswordLink");
-               
+                  
+                   
                     message = message.Replace("{ResetPasswordLink}", resetPasswordLink+"/ForgortPassword/ResetPassword/RestToken=?"+ ResetToken);
                     bool isEmailSent = SendEmail.EmailSend(senderEmail, subject, message, null);
              

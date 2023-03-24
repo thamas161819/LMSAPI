@@ -41,7 +41,7 @@ namespace LMS.Controllers
                 var emailExists = await _forgotPasswordService.IsEmailExists(email.Email, ResetToken);
 
                 if (emailExists!=null)
-                {
+                { 
                     var senderEmail = email.Email;
                     var subject = "Password Reset Request";
 
@@ -62,7 +62,7 @@ namespace LMS.Controllers
 
                     if (isEmailSent)
                     {
-                        return Ok("Password reset link sent to your email address.");
+                        return Ok(true);
                     }
                     else
                     {
@@ -72,7 +72,7 @@ namespace LMS.Controllers
 
                 }
 
-                return BadRequest("Email doesn't exist");
+                return BadRequest(false);
             }
             catch (Exception ex)
             {

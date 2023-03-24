@@ -6,17 +6,21 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSingleton<ICourse,CourseService>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddScoped<IValidateResetToken, ValidateResetTokenService>();
 builder.Services.AddScoped<IResetPassword,ResetPasswordService>();
-
+builder.Services.AddScoped<IValidateVerificationToken,ValidateVerificationTokenService>();
+builder.Services.AddScoped<ValidateVerificationTokenService>();
+builder.Services.AddScoped<IEducation,EducationService>();  
+builder.Services.AddScoped<IValidateVerificationToken, ValidateVerificationTokenService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IInstructorService, InstructorService>();    
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+builder.Services.AddScoped<IDocument, DocumentService>();
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
@@ -35,6 +39,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("GyanShaktiJWTKey"))
     };
 });
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

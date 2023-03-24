@@ -11,14 +11,11 @@ namespace Data.Repositary
     {
         Task<IEnumerable<Category>> GetCategories();
         Task<Category> GetCategoryByID(int id);
-        Task<Category> CreateCategory(Category category);
-
+   
+        Task<AddCategoriesOnly> CreateCategory(AddCategoriesOnly categories);
         Task<Category> UpdateCategory(Category category);
     
         Task<IEnumerable<Category>> DeleteCategory(int id);
-
-
-
-
+    
     }
 }

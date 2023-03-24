@@ -37,13 +37,38 @@ namespace Data.Services
             return results.FirstOrDefault();
         }
 
-        public async Task<Category> CreateCategory(Category category)
+        public async Task<AddCategoriesOnly> CreateCategory(AddCategoriesOnly categories)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@Name", category.Name);
-            parameters.Add("@Description", category.Description);
+            //   var highestCategoryId = await _dbConnection.ExecuteScalarAsync<int?>("SELECT MAX(CategoryId) FROM TBLCategory");
 
-            var results = await _dbConnection.QueryAsync<Category>("CreateCategory", parameters, commandType: CommandType.StoredProcedure);
+            //   var lastCategory = await _dbConnection.ExecuteScalarAsync<string>("SELECT TOP 1 CategoryId FROM TBLCategory ORDER BY CategoryId DESC");
+
+
+            ////   var nextCategoryId = $"CID-{highestCategoryId + 1:D4}";
+            //   var hey = $"CID-{lastCategory + 1:D4}";
+
+            var NewCId = await _dbConnection.ExecuteScalarAsync<string>("SELECT TOP 1 CategoryId FROM TBLCategory ORDER BY CategoryId DESC");
+
+            int NewCategoryId;
+            if (!string.IsNullOrEmpty(NewCId))
+            {
+                if (!int.TryParse(NewCId.Substring(5), out NewCategoryId))
+                {
+                    NewCategoryId = 0;
+                }            
+            }else
+            {
+                NewCategoryId = 0;
+            }
+            var nextCategoryId = $"CTID-{NewCategoryId + 1:D4}";
+
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@CategoryId", nextCategoryId);
+            parameters.Add("@Name", categories.Name);
+            parameters.Add("@Description", categories.Description);
+
+            var results = await _dbConnection.QueryAsync<AddCategoriesOnly>("CreateCategory", parameters, commandType: CommandType.StoredProcedure);
             return results.SingleOrDefault();
         }
 

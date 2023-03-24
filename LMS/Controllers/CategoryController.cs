@@ -47,9 +47,9 @@ namespace YourNamespace.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody] Category category)
+        public async Task<IActionResult> CreateCategory([FromBody] AddCategoriesOnly categories)
         {
-            var result = await _categoryService.CreateCategory(category);
+            var result = await _categoryService.CreateCategory(categories);
             return Ok(result);
         }
 

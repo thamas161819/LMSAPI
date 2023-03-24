@@ -20,17 +20,7 @@ namespace LMS.Controllers
             _configuration = configuration;
         }
 
-        //[HttpGet("ResetPassword/{resetToken}")]
-        //public async Task<IActionResult> ValidateToken(string resetToken)
-        // {
-            
-        //    //string email = "";  // get the email associated with the reset token from the database
-        //    var result = await _validateResetToken.ValidateResetToken(resetToken);
-            
-
-        //    return Ok();
-
-        //}
+    
 
 
         [HttpGet("ResetPassword/{resetToken}")]
@@ -42,15 +32,15 @@ namespace LMS.Controllers
 
                 if (!isValid)
                 {
-                    return BadRequest("Reset token is invalid.");
+                    return BadRequest(false);
                 }
 
                 if (isExpired)
                 {
-                    return BadRequest("Reset token has expired.");
+                    return BadRequest(false);
                 }
 
-                return Ok("Reset token is valid and not expired.");
+                return Ok(true);
             }
             catch (Exception ex)
             {

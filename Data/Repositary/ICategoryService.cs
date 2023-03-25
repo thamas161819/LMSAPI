@@ -16,7 +16,7 @@ namespace Data.Repositary
         Task<AddCategoriesOnly> CreateCategory(AddCategoriesOnly categories);
         Task<Category> UpdateCategory(Category category);
     
-        Task<IEnumerable<Category>> DeleteCategory(int id);
+        Task<IEnumerable<Category>> DeleteCategory(string id);
     
     }
 }

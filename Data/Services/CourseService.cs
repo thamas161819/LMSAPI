@@ -77,19 +77,19 @@ namespace Data.Services
             return results.SingleOrDefault();
         }
 
-        public async Task<Course> UpdateCourse(Course course)
+        public async Task<Course> UpdateCourse(Course Ccourse)
         {
             var parameters = new DynamicParameters();
        
-            parameters.Add("@CategoryCode", course.CategoryCode);
-            parameters.Add("@CourseName", course.CourseName);
-            parameters.Add("@Description", course.Description);
-            parameters.Add("@Level", course.Level);
-            parameters.Add("@CourseFee", course.CourseFee);
-            parameters.Add("@IsFree", course.IsFree);
-            parameters.Add("@SkillTags", course.SkillTags);
-            parameters.Add("@Lectures", course.Lectures);
-            parameters.Add("@DurationWeek", course.DurationWeek);
+            parameters.Add("@CourseCode", Ccourse.CategoryCode);
+            parameters.Add("@CourseName", Ccourse.CourseName);
+            parameters.Add("@Description", Ccourse.Description);
+            parameters.Add("@Level", Ccourse.Level);
+            parameters.Add("@CourseFee", Ccourse.CourseFee);
+            parameters.Add("@IsFree", Ccourse.IsFree);
+            parameters.Add("@SkillTags", Ccourse.SkillTags);
+            parameters.Add("@Lectures", Ccourse.Lectures);
+            parameters.Add("@DurationWeek", Ccourse.DurationWeek);
             var results = await _dbConnection.QueryAsync<Course>("UpdateCourse", parameters, commandType: CommandType.StoredProcedure);
             return results.SingleOrDefault();
         }

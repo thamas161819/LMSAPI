@@ -78,7 +78,7 @@ namespace Data.Services
         }
 
       
-        public async Task<IEnumerable<Category>> DeleteCategory(int id)
+        public async Task<IEnumerable<Category>> DeleteCategory(string id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@CategoryId", id);

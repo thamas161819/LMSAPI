@@ -56,7 +56,7 @@ namespace Data.Services
             {
                 NewCategoryId = 0;
             }
-            var nextCategoryId = $"CTID-{NewCategoryId + 1:D4}";
+            var nextCategoryId = $"CID-{NewCategoryId + 1:D4}";
 
 
             var parameters = new DynamicParameters();
@@ -67,7 +67,7 @@ namespace Data.Services
             parameters.Add("@Level", course.Level);
             parameters.Add("@CourseFee", course.CourseFee);
             parameters.Add("@IsFree", course.IsFree);
-            parameters.Add("@SkillTags", course.Description);
+            parameters.Add("@SkillTags", course.SkillTags);
             parameters.Add("@Lectures", course.Lectures);
             parameters.Add("@DurationWeek", course.DurationWeek);
 
@@ -87,7 +87,7 @@ namespace Data.Services
             parameters.Add("@Level", course.Level);
             parameters.Add("@CourseFee", course.CourseFee);
             parameters.Add("@IsFree", course.IsFree);
-            parameters.Add("@SkillTags", course.Description);
+            parameters.Add("@SkillTags", course.SkillTags);
             parameters.Add("@Lectures", course.Lectures);
             parameters.Add("@DurationWeek", course.DurationWeek);
             var results = await _dbConnection.QueryAsync<Course>("UpdateCourse", parameters, commandType: CommandType.StoredProcedure);
@@ -100,7 +100,7 @@ namespace Data.Services
             var parameters = new DynamicParameters();
             parameters.Add("@CourseId", CourseCode);
 
-            var results = await _dbConnection.QueryAsync<Course>("DeleteCoursw", parameters, commandType: CommandType.StoredProcedure);
+            var results = await _dbConnection.QueryAsync<Course>("DeleteCourse", parameters, commandType: CommandType.StoredProcedure);
             return results;
         }
 

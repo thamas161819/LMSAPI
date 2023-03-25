@@ -13,6 +13,8 @@ namespace Data.Repositary
         Task<IEnumerable<Course>> GetCourse();
         Task<Course> GetCourseByID(string CourseCode);
         //  Task<Course> GetCourseByID(string CourseCode);
+ 
+
         Task<Course> UpdateCourse(Course course);
         Task<AddCourse> AddCourse(AddCourse course);
         Task<IEnumerable<Course>> DeleteCourse(string CourseCode);

@@ -27,7 +27,7 @@ namespace YourNamespace.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("CourseCode")]
         public async Task<IActionResult> GetCourseByID(string CourseCode)
         {
             var Course = await _courseService.GetCourseByID(CourseCode);
@@ -55,7 +55,7 @@ namespace YourNamespace.Controllers
 
 
 
-        [HttpPut("{id}")]
+        [HttpPut("CourseCode")]
         public async Task<IActionResult> UpdateCourse(string Coursecode, [FromBody] Course course)
         {
             if (Coursecode!= course.CourseCode)
@@ -74,7 +74,7 @@ namespace YourNamespace.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{CourseCode}")]
         public async Task<IActionResult> DeleteCourse(string  CourseCode)
         {
             await _courseService.DeleteCourse (CourseCode);

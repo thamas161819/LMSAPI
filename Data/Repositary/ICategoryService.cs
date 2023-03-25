@@ -10,8 +10,9 @@ namespace Data.Repositary
    public interface ICategoryService
     {
         Task<IEnumerable<Category>> GetCategories();
-        Task<Category> GetCategoryByID(int id);
+        Task<Category> GetCategoryByID(string id);
    
+
         Task<AddCategoriesOnly> CreateCategory(AddCategoriesOnly categories);
         Task<Category> UpdateCategory(Category category);
     

@@ -28,7 +28,7 @@ namespace Data.Services
             var results = await _dbConnection.QueryAsync<Category>("GetCategory", commandType: CommandType.StoredProcedure);
             return results;
         }
-        public async Task<Category> GetCategoryByID(int id)
+        public async Task<Category> GetCategoryByID(string id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@CategoryId", id);
@@ -39,13 +39,7 @@ namespace Data.Services
 
         public async Task<AddCategoriesOnly> CreateCategory(AddCategoriesOnly categories)
         {
-            //   var highestCategoryId = await _dbConnection.ExecuteScalarAsync<int?>("SELECT MAX(CategoryId) FROM TBLCategory");
-
-            //   var lastCategory = await _dbConnection.ExecuteScalarAsync<string>("SELECT TOP 1 CategoryId FROM TBLCategory ORDER BY CategoryId DESC");
-
-
-            ////   var nextCategoryId = $"CID-{highestCategoryId + 1:D4}";
-            //   var hey = $"CID-{lastCategory + 1:D4}";
+        
 
             var NewCId = await _dbConnection.ExecuteScalarAsync<string>("SELECT TOP 1 CategoryId FROM TBLCategory ORDER BY CategoryId DESC");
 
@@ -75,8 +69,8 @@ namespace Data.Services
         public async Task<Category> UpdateCategory(Category category)
         {
             var parameters = new DynamicParameters();
+            parameters.Add("@CategoryId", category.CategoryId);
             parameters.Add("@Name", category.Name);
-            parameters.Add("@CategoryId", category.CategoryId); 
             parameters.Add("@Description", category.Description);
 
             var results = await _dbConnection.QueryAsync<Category>("UpdateCategory", parameters, commandType: CommandType.StoredProcedure);

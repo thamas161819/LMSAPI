@@ -28,7 +28,7 @@ namespace YourNamespace.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategoryByID(int id)
+        public async Task<IActionResult> GetCategoryByID(string id)
         {
             var category = await _categoryService.GetCategoryByID(id);
 
@@ -56,7 +56,7 @@ namespace YourNamespace.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
+        public async Task<IActionResult> UpdateCategory(string id, [FromBody] Category category)
         {
             if (id != category.CategoryId)
             {

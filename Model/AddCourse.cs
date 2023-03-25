@@ -11,7 +11,7 @@ namespace Model
         public string CategoryCode { get; set; }
         public string CourseName { get; set; }
         public string Description { get; set; }
-        public string Level { get; set; }
+        public int Level { get; set; }
         public decimal CourseFee { get; set; }
         public bool IsFree { get; set; }
         public string SkillTags { get; set; }
